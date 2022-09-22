@@ -1,0 +1,307 @@
+<html lang="en">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');</style>
+<head>
+
+    <title>Questions and answers</title></head>
+<body>
+
+
+
+<section class="hero is-link">
+    <div class="hero-body">
+      <p class="title">
+        Write something
+      </p>
+      <p class="subtitle">
+        Get Questions now
+      </p>
+    </div>
+  </section>
+  <section class="section">
+ <div class="tabs is-boxed is-large">
+<ul>
+    <li class="is-active" data-target="intro_page">
+     <a href="/"> Introduction</a>
+    </li>
+    <li data-target="get_questions">
+        <a href="/get_questions">Get questions</a>
+       </li>
+       <li data-target="Compare_models">
+        <a href="/compare"> Compare Models</a>
+       </li>
+       <li data-target="step_by_step">
+        <a>Step by Step process</a>
+       </li>
+</ul>
+ </div>
+ <div id="tab-content">
+ <div id="intro_page">
+  <p>Lovely morning</p>
+ </div>
+ <div id="get_questions" class="is-hidden">
+    <form name="python_form" onsubmit="return validateForm1()" action="#" method="post">
+        <div class="field is-horizontal" style="margin: 10px; ">
+            <div class="field-label">
+                <label class="label">Message</label>
+            </div>
+         <div class="field-body">
+           <div class="field">
+          <div class="control" style="border: 5px; height:100px;">
+            <input list="messages" id="message1" class="select-editable" name="mes" style="font-size: large;"/>
+    
+    <datalist id="messages">
+        <option value="in 1931, father julius nieuwland performed early work on basic reactions that was used to create neoprene.">
+        <option value="in the 1940s lobund achieved independent status as a purely research organization and in 1950 was raised to the status of an institute.">
+        <option value="his elder sister ludwika also took lessons from żywny, and occasionally played duets with her brother.">
+        
+    </datalist>
+          
+    
+        <a href="/" style=" font-weight: bold; ">Clear</a>
+    
+    
+    
+            <p style="display:none" id="hidden_text">{{paragraph}}</p>
+            
+            
+          </div>
+         </div>
+         </div>
+        </div>
+        <div class="field is-horizontal" style="margin-left: 162px;  ">
+            <div class="field-label">
+                <label class="label" for="model" style=" margin-left: 10px;">Choose a model</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+      <select name="model" id="model" style="margin-right: -9px;font-size: medium;">
+        <option value="bart_1">Bart</option>
+        <option value="t5_4">T5</option>
+        <option value="base_bart_2">Base Bart</option>
+        <option value="base_t5_7">Base T5_7</option>
+
+      </select>
+                </div>
+                </div>
+                <div class="field-label">
+                    <label class="label" for="model" style="margin-right: 10px; margin-left: 10px;">Choose an alpha</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+          <select name="alpha" id="alpha" style="margin-right: 10px; font-size: medium;">
+            <option value="80">80</option>
+            <option value="85">85</option>
+          </select>
+                    </div>
+                    </div>
+        </div>
+        <div class="field-body" style="margin-left:235px;">
+            <p id="output" style="width: 900px;height: 200px; font-size: large; border-radius: 4px; border: solid 1px grey;">{{question}}</p>
+          </div>
+          <div>
+            <button class="button is-info" style="margin-left:900px; margin-top: 50px;" type="submit" value="submit" >Submit</button>
+        
+            <div class="loader" style="display:none;"id="loadingdiv">
+            </div>
+          </div>
+       
+        </form>
+        </div>
+    <div id="Compare_models" class="is-hidden">
+      <form name="python_form" onsubmit="return validateForm2()" action="#" method="post">
+        <div class="field is-horizontal" style="margin: 10px; ">
+            <div class="field-label">
+                <label class="label">Message</label>
+            </div>
+         <div class="field-body">
+           <div class="field">
+          <div class="control" style="border: 5px; height:100px;">
+            <input list="messages" id="message2" class="select-editable" name="mes" style="font-size: large;"/>
+    
+            <datalist id="messages">
+              <option value="in 1931, father julius nieuwland performed early work on basic reactions that was used to create neoprene.">
+              <option value="in the 1940s lobund achieved independent status as a purely research organization and in 1950 was raised to the status of an institute.">
+              <option value="his elder sister ludwika also took lessons from żywny, and occasionally played duets with her brother.">
+              
+          </datalist>
+          
+    
+        <a href="/" style=" font-weight: bold; ">Clear</a>
+    
+    
+    
+            <p style="display:none" id="hidden_text">{{paragraph}}</p>
+            
+            
+          </div>
+         </div>
+         </div>
+        </div>
+        <div class="field is-horizontal" style="margin-left: 162px;  ">
+            <div class="field-label">
+                <label class="label" for="model1" style=" margin-left: 10px;">Choose a model</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+      <select name="model1" id="model1" style="margin-right: -9px;font-size: medium;">
+        <option value="bart_1">Bart</option>
+        <option value="t5_4">T5</option>
+        <option value="base_bart_2">Base Bart</option>
+        <option value="base_t5_7">Base T5_7</option>
+      </select>
+                </div>
+                </div>
+                <div class="field-label">
+                    <label class="label" for="alpha1" style="margin-right: 10px; margin-left: 10px; ">Choose an alpha</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+          <select name="alpha1" id="alpha1" style="margin-right: 10px; font-size: medium;">
+            <option value="80">80</option>
+            <option value="85">85</option>
+          </select>
+                    </div>
+                    </div>
+        </div>
+        <div class="field is-horizontal" style="margin-left: 162px;  ">
+          <div class="field-label">
+              <label class="label" for="model2" style=" margin-left: 10px; color:rgb(86, 76, 129)">Choose a model</label>
+          </div>
+          <div class="field-body">
+              <div class="field">
+    <select name="model2" id="model2" style="margin-right: -9px;font-size: medium;">
+      <option value="bart_1">Bart</option>
+      <option value="t5_4">T5</option>
+      <option value="base_bart_2">Base Bart</option>
+        <option value="base_t5_7">Base T5_7</option>
+    </select>
+              </div>
+              </div>
+              <div class="field-label">
+                  <label class="label" for="alpha2" style="margin-right: 10px; margin-left: 10px; color:rgb(86, 76, 129)">Choose an alpha</label>
+              </div>
+              <div class="field-body">
+                  <div class="field">
+        <select name="alpha2" id="alpha2" style="margin-right: 10px; font-size: medium;">
+          <option value="80">80</option>
+          <option value="85">85</option>
+        </select>
+                  </div>
+                  </div>
+      </div>
+        <div class="field-body" style="margin-left:235px;">
+            <p id="output" style="width: 450px;height: 200px; font-size: large; border-radius: 4px; border: solid 1px grey;">{{question1}}</p>
+            <p id="output" style="width: 450px;height: 200px; font-size: large; border-radius: 4px; border: solid 1px rgb(86, 76, 129);">{{question2}}</p>
+          </div>
+          <div>
+            <button class="button is-info" style="margin-left:900px; margin-top: 50px;" type="submit" value="submit" >Submit</button>
+        
+            <div class="loader" style="display:none;"id="loadingdiv2">
+            </div>
+          </div>
+       
+        </form>
+    </div>
+    <div id="step_by_step" class="is-hidden">
+      <h1>Choose the model in the second or third tab to see the step by step break down</h1>
+    </div>
+ </div>
+</section>
+
+<style>
+    .select-editable {position:relative; background-color:white; border:solid rgb(95, 88, 88) 1px;  width:846px; height: 50px; }
+    .hero-body{
+      background-image: url("https://cutewallpaper.org/24/question-mark-gif/animated-text-🎷.gif");
+    }
+.loader{
+    border:16px solid #f3f3f3;
+    border-top:16px solid #3498db;
+    border: radius 50%;
+    position:absolute;
+    top:400;
+    left:630;
+    width:50px;
+    height:50px;
+}
+
+/* Animation */
+
+
+/* text animation */
+
+@keyframes animated-text{
+  from{width: 0;}
+  to{width: 900px;}
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script>
+   const tabs=document.querySelectorAll('.tabs li');
+
+const tabContentBoxes=document.querySelectorAll('#tab-content > div');
+
+tabs.forEach((tab)=>{
+
+    tab.addEventListener('click',()=>{
+
+        tabs.forEach(item=>item.classList.remove('is-active'))
+
+        tab.classList.add('is-active');
+
+        const target=tab.dataset.target
+
+       tabContentBoxes.forEach(box=>{
+
+        if(box.getAttribute('id')===target){
+
+            box.classList.remove('is-hidden');
+
+        }else{
+
+            box.classList.add('is-hidden');
+
+        }
+
+       })
+
+    })
+
+})
+ var model_dom=document.getElementById("model1").value;
+ if (model_dom=="base_bart_2"||model_dom=="base_t5_7"){
+  document.getElementById("alpha1").style="none";
+ }
+
+
+
+
+
+function validateForm1() {
+ 
+    var message = document.getElementById("message1").value;
+    if (message == "") {
+        alert("Message must be filled out");
+        return false;
+    }
+    $('#loadingdiv').show();
+    return true;
+
+}
+function validateForm2() {
+ 
+ var message = document.getElementById("message2").value;
+ if (message == "") {
+     alert("Message must be filled out");
+     return false;
+ }
+ $('#loadingdiv2').show();
+ return true;
+
+}
+
+
+
+
+</script>
