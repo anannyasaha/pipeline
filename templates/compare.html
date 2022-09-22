@@ -22,22 +22,22 @@
   <section class="section">
  <div class="tabs is-boxed is-large">
 <ul>
-    <li class="is-active" data-target="intro_page">
-     <a href="/"> Introduction</a>
+    <li data-target="intro_page">
+     <a> Introduction</a>
     </li>
     <li data-target="get_questions">
         <a href="/get_questions">Get questions</a>
        </li>
-       <li data-target="Compare_models">
+       <li class="is-active" data-target="Compare_models">
         <a href="/compare"> Compare Models</a>
        </li>
        <li data-target="step_by_step">
-        <a>Step by Step process</a>
+        <a >Step by Step process</a>
        </li>
 </ul>
  </div>
  <div id="tab-content">
- <div id="intro_page">
+ <div id="intro_page" class="is-hidden">
   <p>Lovely morning</p>
  </div>
  <div id="get_questions" class="is-hidden">
@@ -51,13 +51,12 @@
           <div class="control" style="border: 5px; height:100px;">
             <input list="messages" id="message1" class="select-editable" name="mes" style="font-size: large;"/>
     
-    <datalist id="messages">
-        <option value="in 1931, father julius nieuwland performed early work on basic reactions that was used to create neoprene.">
-        <option value="in the 1940s lobund achieved independent status as a purely research organization and in 1950 was raised to the status of an institute.">
-        <option value="his elder sister ludwika also took lessons from żywny, and occasionally played duets with her brother.">
-        
-    </datalist>
-          
+            <datalist id="messages">
+              <option value="in 1931, father julius nieuwland performed early work on basic reactions that was used to create neoprene.">
+              <option value="in the 1940s lobund achieved independent status as a purely research organization and in 1950 was raised to the status of an institute.">
+              <option value="his elder sister ludwika also took lessons from żywny, and occasionally played duets with her brother.">
+              
+          </datalist>
     
         <a href="/" style=" font-weight: bold; ">Clear</a>
     
@@ -79,9 +78,6 @@
       <select name="model" id="model" style="margin-right: -9px;font-size: medium;">
         <option value="bart_1">Bart</option>
         <option value="t5_4">T5</option>
-        <option value="base_bart_2">Base Bart</option>
-        <option value="base_t5_7">Base T5_7</option>
-
       </select>
                 </div>
                 </div>
@@ -109,7 +105,7 @@
        
         </form>
         </div>
-    <div id="Compare_models" class="is-hidden">
+    <div id="Compare_models">
       <form name="python_form" onsubmit="return validateForm2()" action="#" method="post">
         <div class="field is-horizontal" style="margin: 10px; ">
             <div class="field-label">
@@ -128,7 +124,7 @@
           </datalist>
           
     
-        <a href="/" style=" font-weight: bold; ">Clear</a>
+        <a href="/compare" style=" font-weight: bold; ">Clear</a>
     
     
     
@@ -145,16 +141,16 @@
             </div>
             <div class="field-body">
                 <div class="field">
-      <select name="model1" id="model1" style="margin-right: -9px;font-size: medium;">
+      <select name="model1" id="model1" style="margin-right: -9px;font-size: medium;"onchange="hideAlpha1()">
         <option value="bart_1">Bart</option>
         <option value="t5_4">T5</option>
         <option value="base_bart_2">Base Bart</option>
-        <option value="base_t5_7">Base T5_7</option>
+        <option value="base_t5_7">Base T5</option>
       </select>
                 </div>
                 </div>
                 <div class="field-label">
-                    <label class="label" for="alpha1" style="margin-right: 10px; margin-left: 10px; ">Choose an alpha</label>
+                    <label class="label" id="label_alpha1" for="alpha1" style="margin-right: 10px; margin-left: 10px; ">Choose an alpha</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
@@ -171,16 +167,16 @@
           </div>
           <div class="field-body">
               <div class="field">
-    <select name="model2" id="model2" style="margin-right: -9px;font-size: medium;">
+    <select name="model2" id="model2" style="margin-right: -9px;font-size: medium;" onchange="hideAlpha2()">
       <option value="bart_1">Bart</option>
       <option value="t5_4">T5</option>
       <option value="base_bart_2">Base Bart</option>
-        <option value="base_t5_7">Base T5_7</option>
+      <option value="base_t5_7">Base T5</option>
     </select>
               </div>
               </div>
               <div class="field-label">
-                  <label class="label" for="alpha2" style="margin-right: 10px; margin-left: 10px; color:rgb(86, 76, 129)">Choose an alpha</label>
+                  <label class="label" for="alpha2" id="label_alpha2" style="margin-right: 10px; margin-left: 10px; color:rgb(86, 76, 129)">Choose an alpha</label>
               </div>
               <div class="field-body">
                   <div class="field">
@@ -205,7 +201,10 @@
         </form>
     </div>
     <div id="step_by_step" class="is-hidden">
-      <h1>Choose the model in the second or third tab to see the step by step break down</h1>
+      <h1>{{model_number_1}}</h1>
+      <p>{{explanation_1}}</p>
+      <h1>{{model_number_2}}</h1>
+      <p>{{explanation_2}}</p>
     </div>
  </div>
 </section>
@@ -269,12 +268,26 @@ tabs.forEach((tab)=>{
     })
 
 })
- var model_dom=document.getElementById("model1").value;
+function hideAlpha1(){
+var model_dom=document.getElementById("model1").value;
  if (model_dom=="base_bart_2"||model_dom=="base_t5_7"){
-  document.getElementById("alpha1").style="none";
+  document.getElementById("alpha1").style="display:none";
+  document.getElementById("label_alpha1").style="display:none";
  }
-
-
+ else { document.getElementById("alpha1").style="margin-right: 10px; font-size: medium;";
+ document.getElementById("label_alpha1").style="margin-right: 10px; margin-left: 10px; ";} 
+     
+}
+function hideAlpha2(){
+var model_dom=document.getElementById("model2").value;
+ if (model_dom=="base_bart_2"||model_dom=="base_t5_7"){
+  document.getElementById("alpha2").style="display:none";
+  document.getElementById("label_alpha2").style="display:none";
+ }
+ else { document.getElementById("alpha2").style="margin-right: 10px; font-size: medium;";
+ document.getElementById("label_alpha2").style="margin-right: 10px; margin-left: 10px; color:rgb(86, 76, 129)";} 
+     
+}
 
 
 

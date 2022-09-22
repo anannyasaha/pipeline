@@ -9,7 +9,7 @@
 
 
 
-<section class="hero is-link">
+  <section class="hero is-link">
     <div class="hero-body">
       <p class="title">
         Write something
@@ -22,13 +22,13 @@
   <section class="section">
  <div class="tabs is-boxed is-large">
 <ul>
-    <li class="is-active" data-target="intro_page">
+    <li  data-target="intro_page">
      <a href="/"> Introduction</a>
     </li>
     <li data-target="get_questions">
         <a href="/get_questions">Get questions</a>
        </li>
-       <li data-target="Compare_models">
+       <li class="is-active" data-target="Compare_models">
         <a href="/compare"> Compare Models</a>
        </li>
        <li data-target="step_by_step">
@@ -37,11 +37,11 @@
 </ul>
  </div>
  <div id="tab-content">
- <div id="intro_page">
+ <div id="intro_page" class="is-hidden">
   <p>Lovely morning</p>
  </div>
  <div id="get_questions" class="is-hidden">
-    <form name="python_form" onsubmit="return validateForm1()" action="#" method="post">
+    <form name="python_form" onsubmit="return validateForm()" action="#" method="post">
         <div class="field is-horizontal" style="margin: 10px; ">
             <div class="field-label">
                 <label class="label">Message</label>
@@ -49,14 +49,8 @@
          <div class="field-body">
            <div class="field">
           <div class="control" style="border: 5px; height:100px;">
-            <input list="messages" id="message1" class="select-editable" name="mes" style="font-size: large;"/>
+            <input list="messages" class="select-editable" name="mes" style="font-size: large;"/>
     
-    <datalist id="messages">
-        <option value="in 1931, father julius nieuwland performed early work on basic reactions that was used to create neoprene.">
-        <option value="in the 1940s lobund achieved independent status as a purely research organization and in 1950 was raised to the status of an institute.">
-        <option value="his elder sister ludwika also took lessons from żywny, and occasionally played duets with her brother.">
-        
-    </datalist>
           
     
         <a href="/" style=" font-weight: bold; ">Clear</a>
@@ -79,9 +73,6 @@
       <select name="model" id="model" style="margin-right: -9px;font-size: medium;">
         <option value="bart_1">Bart</option>
         <option value="t5_4">T5</option>
-        <option value="base_bart_2">Base Bart</option>
-        <option value="base_t5_7">Base T5_7</option>
-
       </select>
                 </div>
                 </div>
@@ -109,8 +100,8 @@
        
         </form>
         </div>
-    <div id="Compare_models" class="is-hidden">
-      <form name="python_form" onsubmit="return validateForm2()" action="#" method="post">
+    <div id="Compare_models">
+      <form name="python_form" onsubmit="return validateForm()" action="#" method="post">
         <div class="field is-horizontal" style="margin: 10px; ">
             <div class="field-label">
                 <label class="label">Message</label>
@@ -118,23 +109,8 @@
          <div class="field-body">
            <div class="field">
           <div class="control" style="border: 5px; height:100px;">
-            <input list="messages" id="message2" class="select-editable" name="mes" style="font-size: large;"/>
-    
-            <datalist id="messages">
-              <option value="in 1931, father julius nieuwland performed early work on basic reactions that was used to create neoprene.">
-              <option value="in the 1940s lobund achieved independent status as a purely research organization and in 1950 was raised to the status of an institute.">
-              <option value="his elder sister ludwika also took lessons from żywny, and occasionally played duets with her brother.">
-              
-          </datalist>
-          
-    
+            <p readonly id="message" value="" style="font-size: large;">{{paragraph}}</p>
         <a href="/" style=" font-weight: bold; ">Clear</a>
-    
-    
-    
-            <p style="display:none" id="hidden_text">{{paragraph}}</p>
-            
-            
           </div>
          </div>
          </div>
@@ -145,12 +121,8 @@
             </div>
             <div class="field-body">
                 <div class="field">
-      <select name="model1" id="model1" style="margin-right: -9px;font-size: medium;">
-        <option value="bart_1">Bart</option>
-        <option value="t5_4">T5</option>
-        <option value="base_bart_2">Base Bart</option>
-        <option value="base_t5_7">Base T5_7</option>
-      </select>
+      <p name="model1" id="model1" style="margin-right: -9px;font-size: medium;">{{model1}}</p>
+        
                 </div>
                 </div>
                 <div class="field-label">
@@ -158,10 +130,8 @@
                 </div>
                 <div class="field-body">
                     <div class="field">
-          <select name="alpha1" id="alpha1" style="margin-right: 10px; font-size: medium;">
-            <option value="80">80</option>
-            <option value="85">85</option>
-          </select>
+          <p name="alpha1" id="alpha1" style="margin-right: 10px; font-size: medium;">{{alpha1}}</p>
+           
                     </div>
                     </div>
         </div>
@@ -171,12 +141,8 @@
           </div>
           <div class="field-body">
               <div class="field">
-    <select name="model2" id="model2" style="margin-right: -9px;font-size: medium;">
-      <option value="bart_1">Bart</option>
-      <option value="t5_4">T5</option>
-      <option value="base_bart_2">Base Bart</option>
-        <option value="base_t5_7">Base T5_7</option>
-    </select>
+    <p name="model2" id="model2" style="margin-right: -9px;font-size: medium;">{{model2}}</p>
+     
               </div>
               </div>
               <div class="field-label">
@@ -184,49 +150,55 @@
               </div>
               <div class="field-body">
                   <div class="field">
-        <select name="alpha2" id="alpha2" style="margin-right: 10px; font-size: medium;">
-          <option value="80">80</option>
-          <option value="85">85</option>
-        </select>
+        <p name="alpha2" id="alpha2" style="margin-right: 10px; font-size: medium;">{{alpha2}}</p>
+          
                   </div>
                   </div>
       </div>
+      
         <div class="field-body" style="margin-left:235px;">
-            <p id="output" style="width: 450px;height: 200px; font-size: large; border-radius: 4px; border: solid 1px grey;">{{question1}}</p>
-            <p id="output" style="width: 450px;height: 200px; font-size: large; border-radius: 4px; border: solid 1px rgb(86, 76, 129);">{{question2}}</p>
+            <p id="output" style="width: 450px;height: 200px; font-size: large; border-radius: 4px;">{{question1}}</p>
+            <p id="output" style="width: 450px;height: 200px; font-size: large; border-radius: 4px; color:rgb(86, 76, 129)">{{question2}}</p>
           </div>
           <div>
             <button class="button is-info" style="margin-left:900px; margin-top: 50px;" type="submit" value="submit" >Submit</button>
         
-            <div class="loader" style="display:none;"id="loadingdiv2">
+            <div class="loader" style="display:none;"id="loadingdiv">
             </div>
           </div>
        
         </form>
     </div>
     <div id="step_by_step" class="is-hidden">
-      <h1>Choose the model in the second or third tab to see the step by step break down</h1>
+      <h1>{{model_number_1}}</h1>
+      <p>{{explanation_1}}</p>
+      <h1>{{model_number_2}}</h1>
+      <p>{{explanation_2}}</p>
     </div>
  </div>
 </section>
 
 <style>
-    .select-editable {position:relative; background-color:white; border:solid rgb(95, 88, 88) 1px;  width:846px; height: 50px; }
+    .select-editable {position:relative; background-color:white; border:solid rgb(95, 88, 88) 1px;  width:846px; height: 50px;}
     .hero-body{
       background-image: url("https://cutewallpaper.org/24/question-mark-gif/animated-text-🎷.gif");
     }
+    #output {
+  
+  overflow: hidden;    
+  font-family: 'Source Code Pro', monospace;  
+  font-size: 28px;
+  color: rgba(15, 1, 1, 0.7);
+  animation: animated-text 2s steps(30,end) 1s 1 normal both;
+}
 .loader{
     border:16px solid #f3f3f3;
     border-top:16px solid #3498db;
     border: radius 50%;
-    position:absolute;
-    top:400;
-    left:630;
     width:50px;
     height:50px;
 }
 
-/* Animation */
 
 
 /* text animation */
@@ -238,7 +210,13 @@
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
-   const tabs=document.querySelectorAll('.tabs li');
+   
+
+
+var output=document.getElementById("output").textContent;
+console.log(output)
+
+const tabs=document.querySelectorAll('.tabs li');
 
 const tabContentBoxes=document.querySelectorAll('#tab-content > div');
 
@@ -269,36 +247,14 @@ tabs.forEach((tab)=>{
     })
 
 })
- var model_dom=document.getElementById("model1").value;
- if (model_dom=="base_bart_2"||model_dom=="base_t5_7"){
-  document.getElementById("alpha1").style="none";
- }
-
-
-
-
-
-function validateForm1() {
- 
-    var message = document.getElementById("message1").value;
+function validateForm() {
+    var message = document.forms["python_form"]["mes"].value;
     if (message == "") {
         alert("Message must be filled out");
         return false;
     }
     $('#loadingdiv').show();
     return true;
-
-}
-function validateForm2() {
- 
- var message = document.getElementById("message2").value;
- if (message == "") {
-     alert("Message must be filled out");
-     return false;
- }
- $('#loadingdiv2').show();
- return true;
-
 }
 
 
